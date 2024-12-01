@@ -41,17 +41,17 @@ compile_run_log() {
 
 # Compile and run with different flag combinations
 compile_run_log "" "noflags"
+compile_run_log "-O1" "O1"
 compile_run_log "-O1 -march=native" "O1 -march_native"
-compile_run_log "-O1 -march=native -funroll-loops" "O1 -march=native -funroll_loops"
 compile_run_log "-O2" "O2"
-compile_run_log "-O2 -funroll-loops" "O2 -funroll_loops"
+compile_run_log "-O2 -funroll-loops" "O2 -funroll-loops"
 compile_run_log "-O2 -fprefetch-loop-arrays" "O2 -fprefetch-loop-array"
 compile_run_log "-O2 -ftree-vectorize" "O2  -ftree-vectorize"
 compile_run_log "-O2 -march=native" "O2 -march=native"
 compile_run_log "-O2 -funroll-loops -march=native" "O2 -funroll-loops -march=native"
 compile_run_log "-O2 -ftree-vectorize -march=native" "O2 -ftree-vectorize -march=native"
-compile_run_log "-O2 -march=native -ftree-vectorize -funroll-loops" "O2 senza -ftree-vectorize"
+#compile_run_log "-O2 -march=native -ftree-vectorize -funroll-loops" "O2 senza -ftree-vectorize"
 compile_run_log "-O2 -funroll-loops -fprefetch-loop-arrays -ftree-vectorize -march=native" "O2_all"
-compile_run_log "-O2 -funroll-loops -fprefetch-loop-arrays -ftree-vectorize" "O2_all senza march"
+#compile_run_log "-O2 -funroll-loops -fprefetch-loop-arrays -ftree-vectorize" "O2_all senza march"
 
 echo "Build and test completed. Results saved to $output_file."
