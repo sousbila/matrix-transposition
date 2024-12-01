@@ -1,6 +1,6 @@
 # Matrix Transposition Performance Analysis
 
-This repository contains the code and scripts used to analyze the performance of different matrix transposition implementations. The project focuses on optimizing matrix transposition operations using various techniques, including sequential methods, implicit parallelism with compiler optimizations and explicit parallelism with OpenMP. For further information (Problem Statement and Performance Analysis) check-out `reportID_235252`.  
+This repository contains the code and scripts used to analyze the performance of different matrix transposition implementations. The project focuses on optimizing matrix transposition operations using various techniques, including sequential methods, implicit parallelism with compiler optimizations and explicit parallelism with OpenMP. For further information (Problem Statement and Performance Analysis) check-out `reportID_235252.pdf`.  
 __NB__: MobaXterm was utilized to establish an SSH connection from my local Windows system to the university’s cluster
 
 ## Table of Contents
