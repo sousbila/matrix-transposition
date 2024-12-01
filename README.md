@@ -1,6 +1,6 @@
 # Matrix Transposition Performance Analysis
 
-This repository contains the code and scripts used to analyze the performance of different matrix transposition implementations. The project focuses on optimizing matrix transposition operations using various techniques, including sequential methods, implicit parallelism with compiler optimizations, and explicit parallelism with OpenMP.
+This repository contains the code and scripts used to analyze the performance of different matrix transposition implementations. The project focuses on optimizing matrix transposition operations using various techniques, including sequential methods, implicit parallelism with compiler optimizations and explicit parallelism with OpenMP.
 
 ## Table of Contents
 
@@ -63,7 +63,12 @@ matrix-transposition/
 
 #### Using the PBS Script
 
-To reproduce the main results and obtain the performance measurements for the best four methods (`serial`, `implicit` with blocking, `omp`, and `omp2`), follow these steps:
+To reproduce the results and obtain the performance measurements for:
+- the best four methods (`serial`, `implicit` with blocking, `omp`, and `omp2`) ==> `transpose_times.cvs`,
+- the various combinations of flags I used to compile the implicit.c file ==> `implicitVersus.cvs`,
+- the different ways in which I implemented the explicit parallelization method ==> `explicitVersus.cvs`,
+
+follow these steps:
 
 1. Navigate to the Project Directory:
    ```bash
@@ -75,16 +80,31 @@ To reproduce the main results and obtain the performance measurements for the be
    ```
    **Note:**
    - The `submit.pbs` script will:
-     - Load the required GCC module.
-     - Compile the code using `build.sh` located in `mainCode/`.
-     - Run the experiments using `run.sh` located in `mainCode/`.
-     - The output file `transpose_times.csv` will be created in the `d1_project/` directory.
+     - Load the required GCC module
+     - Compile the code using `build.sh` located in `mainCode/`
+     - Run the experiment using `run.sh` and `implicitScript.sh` located in `mainCode/`
+     - Compile the code using `buildExp.sh` located in `explicitTest/`
+     - Run the experiment using `runExp.sh` located in `explicitTest/`
+     - The output files `transpose_times.csv`, `implicitVersus.csv` and `implicitVersus.csv` will be created in the `d1_project/` directory
 
-3. Retrieve the Output:
-   - `transpose_times.csv` in `d1_project/` contains measurements for the best four methods (`serial`, `implicit`, `explicit`, `explicitblock`) across different matrix sizes and thread counts.
+3. Retrieve the Output Files from `d1_project/`:
+   - `transpose_times.csv` contains measurements for the best four methods (`serial`, `implicit`, `explicit`, `explicitblock`) across different matrix sizes and thread counts.
+   - `implicitVersus.csv` contains measurements for various combinations of flags across different matrix sizes. Flag combinations used include:
+     * `noflags`
+     * `O1`
+     * `O1 -march_native`
+     * `O2`
+     * `O2 -funroll-loops`
+     * `O2 -fprefetch-loop-array`
+     * `O2 -ftree-vectorize`
+     * `O2 -march=native`
+     * `O2 -funroll-loops -march=native``O2 -ftree-vectorize -march=native`
+     * `-O2 -march=native -ftree-vectorize -funroll-loops`
+     * `-O2 -funroll-loops -fprefetch-loop-arrays -ftree-vectorize -march=native`
+   - `explicit_times.csv`: Contains measurements for the explicit methods (`omp`, `omp1`, `omp2`, `omp3`) across different matrix sizes and thread counts.
    - Standard output and error logs (`matrix_transpose.out` and `matrix_transpose.err`).
 
-#### Manual Execution
+## Manual Execution
 
 If you prefer to run the code interactively:
 
@@ -160,7 +180,7 @@ To analyze and compare different explicit methods (`omp`, `omp1`, `omp2`, `omp3`
    - The measurements will be saved in `explicit_times.csv` located in the `d1_project/` directory.
    - Each command is executed 5 times to allow calculation of average times and plotting of graphs in Python.
 
-## Testing Implicit Implementations with Different Compiler Flags
+### Testing Implicit Implementations with Different Compiler Flags
 
 To test the implicit method with various compiler optimization flags, use the `implicitScript.sh` script in the `mainCode/` directory.
 
@@ -199,9 +219,8 @@ Note: All output files are created in the `d1_project/` directory (parent direct
 
 ## Notes
 
-- **Measurement Repetition**: Each experiment is executed 5 times to account for variability in execution time. The average time can be calculated from these measurements for more accurate analysis.
+- **Measurement Repetition**: In the initial configurations of the scripts, each experiment was conducted five times to accommodate variability in execution times. However, this component has been omitted to ensure that the files generated upon executing the .pbs file contain single, non-repeated measurements, thereby facilitating easier interpretation and analysis.
 - **Plotting Results**: The generated `.csv` files can be used to plot graphs and analyze the performance of different methods using tools like Python's `matplotlib` or `pandas`.
-- **PBS Script**: The `submit.pbs` script is configured to compile and run the main experiments automatically on a cluster using the PBS job scheduler. Adjust the resource requests and module loads as needed for your specific environment.
 - **Environment Setup**:
   - Ensure that the GCC 9.1.0 module (`gcc91`) is available on your system.
   - The scripts assume a Unix-like environment with Bash shell.
