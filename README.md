@@ -70,11 +70,33 @@ To reproduce the results and obtain the performance measurements for:
 
 follow these steps:
 
-1. Navigate to the Project Directory:
-   ```bash
+1. Navigate to the Project Directoy
+   ```
    cd matrix-transposition/d1_project
-
-2. Submit the PBS Job:
+   ```
+   Convert to Unix format the `submit.pbs` file and ensure it's executable
+   ```
+   dos2unix submit.pbs
+   chmod +x submit.pbs
+   ```
+   Navigate to `mainCode/` and convert to unix format the bash scripts
+   ```
+   cd mainCode
+   dos2unix build.sh
+   dos2unix run.sh
+   dos2unix implicitScript.sh
+   ```
+   Navigate to `explicitTest/` and convert to unix format the bash scripts
+   ```
+   cd ../explicitTest
+   dos2unix buildExp.sh
+   dos2unix runExp.sh
+   ```
+2. Navigate to the Project Directory:
+   ```
+   cd ..
+   ```
+3. Submit the PBS Job:
    ```
    qsub submit.pbs
    ```
@@ -87,7 +109,7 @@ follow these steps:
      - Run the experiment using `runExp.sh` located in `explicitTest/`
      - The output files `transpose_times.csv`, `implicitVersus.csv` and `implicitVersus.csv` will be created in the `d1_project/` directory
 
-3. Retrieve the Output Files from `d1_project/`:
+4. Retrieve the Output Files from `d1_project/`:
    - `transpose_times.csv` contains measurements for the best four methods (`serial`, `implicit`, `explicit`, `explicitblock`) across different matrix sizes and thread counts.
    - `implicitVersus.csv` contains measurements for various combinations of flags across different matrix sizes. Flag combinations used include:
      * `noflags`
