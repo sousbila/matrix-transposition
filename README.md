@@ -82,15 +82,12 @@ follow these steps:
    Navigate to `mainCode/` and convert to unix format the bash scripts
    ```
    cd mainCode
-   dos2unix build.sh
-   dos2unix run.sh
-   dos2unix implicitScript.sh
+   dos2unix build.sh run.sh implicitScript.sh
    ```
    Navigate to `explicitTest/` and convert to unix format the bash scripts
    ```
    cd ../explicitTest
-   dos2unix buildExp.sh
-   dos2unix runExp.sh
+   dos2unix buildExp.sh runExp.sh
    ```
 2. Navigate to the Project Directory:
    ```
