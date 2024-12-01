@@ -29,12 +29,12 @@ compile_run_log() {
 
     # Execute the compiled program 5 times and log results
     for n in {4..12}; do
-        for run in {1..5}; do
+        #for run in {1..5}; do
             export OMP_NUM_THREADS=1  
             ./program $n implicit > temp_output.txt
             time_measured=$(tail -1 temp_output.txt)
             echo "implicit,$flags_description,1,$n,$time_measured" >> $output_file
-        done
+        #done
     done
     rm temp_output.txt  # Clean up
 }

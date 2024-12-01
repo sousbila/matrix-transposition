@@ -11,11 +11,11 @@ run_program_and_log() {
     local exponent=$3
 
     export OMP_NUM_THREADS=$threads  # Set the number of threads for this run
-    for run in {1..5}; do
+    #for run in {1..5}; do
         ./program $exponent $method > temp_output.txt
         time_measured=$(tail -1 temp_output.txt)
         echo "$method,$threads,$exponent,$time_measured" >> $output_file
-    done
+    #done
 }
 
 # Define the array of methods

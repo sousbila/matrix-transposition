@@ -16,7 +16,7 @@ cd $PBS_O_WORKDIR
 cd mainCode
 
 # Ensure the build.sh and run.sh scripts are executable
-chmod +x build.sh run.sh
+chmod +x build.sh run.sh implicitScript.sh
 
 # Build the code
 echo "Building the code..."
@@ -25,5 +25,20 @@ bash build.sh
 # Run the experiments
 echo "Running the experiments..."
 bash run.sh
+bash implicitScript.sh
+
+# Navigate to the esplicitTest directory
+cd ../explicitTest
+
+# Ensure the buildExp.sh and runExp.sh scripts are executable
+chmod +x buildExp.sh runExp.sh
+
+# Build the code
+echo "Building the code..."
+bash buildExp.sh
+
+# Run the experiment
+echo "Running the experiment..."
+bash runExp.sh
 
 echo "Job completed."
