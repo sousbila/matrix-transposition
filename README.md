@@ -115,7 +115,7 @@ If you prefer to run the code interactively:
    ```
    export OMP_NUM_THREADS='number of threads'; ./$OUTPUT 'exponent' 'method'
    ```
-   b) Run all four methods with a specified exponent (from 4 to 12)
+   b) Run all four methods with a specified exponent (from `4` to `12`)
    ```
    export OMP_NUM_THREADS='number of threads'; ./$OUTPUT 'exponent'
    ```
